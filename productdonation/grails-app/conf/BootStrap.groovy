@@ -14,9 +14,9 @@ class BootStrap {
 		/**
 		 * Create Admin
 		 */
-		def adminUser = User.findByUsername('admin') ?: new User(
-				username: 'admin',
-				password: 'admin',
+		def adminUser = User.findByUsername('admin@company.com') ?: new User(
+				username: 'admin@company.com', confirmUsername: 'admin@company.com',
+				password: 'admin', confirmPassword: 'admin',
 				enabled: true).save(failOnError: true)
 
 		if (!adminUser.authorities.contains(adminRole)) {

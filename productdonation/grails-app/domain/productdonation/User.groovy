@@ -1,11 +1,28 @@
 package productdonation
 
+import java.util.Date;
+
+import productdonation.util.DateUtil;
+import sun.management.jmxremote.ConnectorBootstrap.DefaultValues;
+
 class User {
 
 	transient springSecurityService
-	static hasMany = [oAuthIDs: OAuthId]
+	String name
+	String lastName
+	byte[] avatar
 	String username
+	String confirmUsername
 	String password
+    String confirmPassword
+	String phoneNumber
+	String address
+	String description;
+	
+	Date createdDate
+	
+	boolean isNewEmailReciever;
+	
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -14,11 +31,27 @@ class User {
 	static transients = ['springSecurityService']
 
 	static constraints = {
-		username blank: false, unique: true
-		password blank: false
+		name blank:false, nullable: true
+		lastName blank:false, nullable:true
+		confirmUsername blank:false, nullable:true
+		confirmPassword blank:false, nullable:true
+		username blank:false,unique: true,email:true, validator:{val,obj ->
+			obj.confirmUsername!=val?'wrong confirm email':true			
+		} 
+	    password blank: false, nullable: false, validator: {val,obj -> 
+			obj.confirmPassword!=val?'wrong password':true
+		}
+		phoneNumber blank:false, nullable:true
+		isNewEmailReciever blank:false
+		avatar nullable:true, maxSize:1073741824
+		address nullable:true
+		description nullable:true  
+		createdDate blank:true, nullable:true 
+		
 	}
 
 	static mapping = {
+		isNewEmailReciever defaultValue:false
 		password column: '`password`'
 	}
 
@@ -27,6 +60,9 @@ class User {
 	}
 
 	def beforeInsert() {
+		if(createdDate==DateUtil.NULL_DATE){
+			createdDate=new Date()
+		}
 		encodePassword()
 	}
 
