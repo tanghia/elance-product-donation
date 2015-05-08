@@ -30,6 +30,8 @@ class BootStrap {
 				'/',
 				'/index',
 				'/index.gsp',
+				'/**/index/**',
+		        '/**/index/index',
 				'/**/favicon.ico',
 				'/**/js/**',
 				'/**/css/**',
@@ -44,7 +46,11 @@ class BootStrap {
 			]) {
 				new RequestMap(url: url, configAttribute: 'permitAll').save()
 			}
-
+			 new RequestMap(url: '/user/create', configAttribute: 'permitAll').save()
+			 new RequestMap(url: '/user/edit', configAttribute: 'permitAll').save()
+			 new RequestMap(url: '/product/create', configAttribute: 'ROLE_ADMIN,ROLE_USER').save()
+			 new RequestMap(url: '/product/edit', configAttribute: 'ROLE_ADMIN,ROLE_USER').save()
+			 new RequestMap(url: '/category/**', configAttribute: 'ROLE_ADMIN,ROLE_USER').save()
 			new RequestMap(url: '/j_spring_security_switch_user',
 			configAttribute: 'ROLE_SWITCH_USER,isFullyAuthenticated()').save()
 		}

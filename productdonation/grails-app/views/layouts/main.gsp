@@ -30,7 +30,11 @@ body {
 	font-family: 'Lato', serif;
 }
 </style>
-
+<script type="text/javascript">
+		function showRegisterPopup() {
+			$('#myModal').modal('show');
+		}
+	</script>
 <g:layoutHead />
 </head>
 <body>
@@ -49,12 +53,21 @@ body {
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
 				<ul class="nav navbar-nav">
-					<li><a href="profile.html"><span
-							class="glyphicon glyphicon-user"></span> Ta Nghia</a></li>
-					<li><a href="history.html"><span
-							class="glyphicon  glyphicon-calendar"></span> My Room</a></li>
-					<li><a><span class="glyphicon  glyphicon-log-out"></span>
-							Logout</a></li>
+					<sec:ifLoggedIn>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+								<sec:username /> </a></li>
+						<li><a href="#"><span
+								class="glyphicon  glyphicon-calendar"></span> My Room</a></li>
+						<li><g:link controller="logout">
+								<span class="glyphicon  glyphicon-log-out"></span>
+							Logout</g:link></li>
+					</sec:ifLoggedIn>
+					<sec:ifNotLoggedIn>
+						<li><a onclick="showRegisterPopup()">
+								<span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
+						<li><g:link controller="login">
+								<span class="glyphicon glyphicon-log-in"></span>Login</g:link></li>
+					</sec:ifNotLoggedIn>
 
 				</ul>
 			</div>
@@ -64,5 +77,24 @@ body {
 	<footer class="text-center">
 		<span>Copyright@2015 by ProductDonation LLC</span>
 	</footer>
+	<!-- Modal -->
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

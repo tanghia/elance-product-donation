@@ -12,9 +12,9 @@ class User {
 	String lastName
 	byte[] avatar
 	String username
-	String confirmUsername
+	//String confirmUsername
 	String password
-    String confirmPassword
+    //String confirmPassword
 	String phoneNumber
 	String address
 	String description;
@@ -33,14 +33,10 @@ class User {
 	static constraints = {
 		name blank:false, nullable: true
 		lastName blank:false, nullable:true
-		confirmUsername blank:false, nullable:true
-		confirmPassword blank:false, nullable:true
-		username blank:false,unique: true,email:true, validator:{val,obj ->
-			obj.confirmUsername!=val?'wrong confirm email':true			
-		} 
-	    password blank: false, nullable: false, validator: {val,obj -> 
-			obj.confirmPassword!=val?'wrong password':true
-		}
+		//confirmUsername blank:false, nullable:true
+		//confirmPassword blank:false, nullable:true
+		username blank:false,unique: true,email:true
+	    password blank: false, nullable: false
 		phoneNumber blank:false, nullable:true
 		isNewEmailReciever blank:false
 		avatar nullable:true, maxSize:1073741824
