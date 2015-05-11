@@ -11,8 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title><g:layoutTitle default="Grails" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<asset:stylesheet src="application.css" />
-<asset:javascript src="application.js" />
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'bootstrap.min.css')}"
 	type="text/css">
@@ -31,10 +29,10 @@ body {
 }
 </style>
 <script type="text/javascript">
-		function showRegisterPopup() {
-			$('#myModal').modal('show');
-		}
-	</script>
+	function showRegisterPopup() {
+		$('#myModal').modal('show');
+	}
+</script>
 <g:layoutHead />
 </head>
 <body>
@@ -47,7 +45,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a href="index.html"> <img alt="Brand" class="navbar-brand"
+				<a href="/index"> <img alt="Brand" class="navbar-brand"
 					src="${resource(dir: 'images', file: 'Business-Donations.jpg')}" /></a>
 
 			</div>
@@ -55,7 +53,7 @@ body {
 				<ul class="nav navbar-nav">
 					<sec:ifLoggedIn>
 						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-								<sec:username /> </a></li>
+								<sec:username /></a></li>
 						<li><a href="#"><span
 								class="glyphicon  glyphicon-calendar"></span> My Room</a></li>
 						<li><g:link controller="logout">
@@ -63,8 +61,9 @@ body {
 							Logout</g:link></li>
 					</sec:ifLoggedIn>
 					<sec:ifNotLoggedIn>
-						<li><a onclick="showRegisterPopup()">
-								<span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
+						<li><g:link controller="user" action="create" > <span
+								class="glyphicon glyphicon-registration-mark"></span> Register
+						</g:link></li>
 						<li><g:link controller="login">
 								<span class="glyphicon glyphicon-log-in"></span>Login</g:link></li>
 					</sec:ifNotLoggedIn>
@@ -74,11 +73,13 @@ body {
 		</div>
 	</nav>
 	<g:layoutBody />
-	<footer class="text-center">
-		<span>Copyright@2015 by ProductDonation LLC</span>
-	</footer>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<footer class="text-center">
+			<span>Copyright@2015 by ProductDonation LLC</span>
+		</footer>
+	</div>
 	<!-- Modal -->
-	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"
+	<%--<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog  modal-lg">
 			<div class="modal-content">
@@ -96,5 +97,6 @@ body {
 			</div>
 		</div>
 	</div>
+--%>
 </body>
 </html>
