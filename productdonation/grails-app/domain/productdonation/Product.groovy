@@ -5,8 +5,10 @@ import javax.persistence.ManyToMany;
 import productdonation.util.DateUtil;
 
 class Product {
+	transient springSecurityService
 	static belongsTo=[user:User,category:Category] 
 	String productName
+	byte[] photo
 	String description
 	String summary
 	String tag
@@ -28,7 +30,7 @@ class Product {
 		activeDate blank:false, nullable:false, min:new Date()
 	}
 	static mapping = {
-		photos cascade: 'all-delete-orphan'
+	//	photos cascade: 'all-delete-orphan'
 		status defaultValue:false
 		isDonation defaultValue:true
 		views defaultValue:1
@@ -41,5 +43,6 @@ class Product {
 		if(activeDate==DateUtil.NULL_DATE){
 			activeDate=new Date();
 		}
+		user=springSecurityService.currentUser
 	}
 }
