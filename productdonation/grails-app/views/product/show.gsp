@@ -40,6 +40,13 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${productInstance?.photo}">
+				<li class="fieldcontain">
+					<span id="photo-label" class="property-label"><g:message code="product.photo.label" default="Photo" /></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${productInstance?.description}">
 				<li class="fieldcontain">

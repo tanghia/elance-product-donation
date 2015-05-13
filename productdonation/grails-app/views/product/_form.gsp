@@ -38,41 +38,32 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} ">
-	<label for="status">
-		<g:message code="product.status.label" default="Status" />
-		
-	</label>
-	<g:checkBox name="status" value="${productInstance?.status}" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'address', 'error')} ">
-	<label for="address">
-		<g:message code="product.address.label" default="Address" />
-		
-	</label>
-	<g:textField name="address" value="${productInstance?.address}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'contactDetail', 'error')} ">
-	<label for="contactDetail">
-		<g:message code="product.contactDetail.label" default="Contact Detail" />
-		
-	</label>
-	<g:textField name="contactDetail" value="${productInstance?.contactDetail}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'createdDate', 'error')} required">
-	<label for="createdDate">
-		<g:message code="product.createdDate.label" default="Created Date" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="createdDate" precision="day"  value="${productInstance?.createdDate}"  />
-
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} ">--%>
+<%--	<label for="status">--%>
+<%--		<g:message code="product.status.label" default="Status" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:checkBox name="status" value="${productInstance?.status}" />--%>
+<%----%>
+<%--</div>--%>
+<%----%>
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'address', 'error')} ">--%>
+<%--	<label for="address">--%>
+<%--		<g:message code="product.address.label" default="Address" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:textField name="address" value="${productInstance?.address}"/>--%>
+<%----%>
+<%--</div>--%>
+<%----%>
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'createdDate', 'error')} required">--%>
+<%--	<label for="createdDate">--%>
+<%--		<g:message code="product.createdDate.label" default="Created Date" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:datePicker name="createdDate" precision="day"  value="${productInstance?.createdDate}"  />--%>
+<%----%>
+<%--</div>--%>
 
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required">
 	<label for="activeDate">
@@ -92,25 +83,34 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isDonation', 'error')} ">
-	<label for="isDonation">
-		<g:message code="product.isDonation.label" default="Is Donation" />
-		
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isDonation', 'error')} ">--%>
+<%--	<label for="isDonation">--%>
+<%--		<g:message code="product.isDonation.label" default="Is Donation" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:checkBox name="isDonation" value="${productInstance?.isDonation}" />--%>
+<%----%>
+<%--</div>--%>
+<%----%>
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} ">--%>
+<%--	<label for="isHot">--%>
+<%--		<g:message code="product.isHot.label" default="Is Hot" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:checkBox name="isHot" value="${productInstance?.isHot}" />--%>
+<%----%>
+<%--</div>--%>
+
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required">
+	<label for="photo">
+		<g:message code="product.photo.label" default="Photo" />
+		<span class="required-indicator">*</span>
 	</label>
-	<g:checkBox name="isDonation" value="${productInstance?.isDonation}" />
+	<input type="file" id="photo" name="photo" />
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} ">
-	<label for="isHot">
-		<g:message code="product.isHot.label" default="Is Hot" />
-		
-	</label>
-	<g:checkBox name="isHot" value="${productInstance?.isHot}" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'user', 'error')} required">
+<div style="visibility: hidden" class="fieldcontain ${hasErrors(bean: productInstance, field: 'user', 'error')} required">
 	<label for="user">
 		<g:message code="product.user.label" default="User" />
 		<span class="required-indicator">*</span>
@@ -118,13 +118,13 @@
 	<g:select id="user" name="user.id" from="${productdonation.User.list()}" optionKey="id" required="" value="${productInstance?.user?.id}" class="many-to-one"/>
 
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'views', 'error')} required">
-	<label for="views">
-		<g:message code="product.views.label" default="Views" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="views" type="number" value="${productInstance.views}" required=""/>
-
-</div>
+<%----%>
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'views', 'error')} required">--%>
+<%--	<label for="views">--%>
+<%--		<g:message code="product.views.label" default="Views" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:field name="views" type="number" value="${productInstance.views}" required=""/>--%>
+<%----%>
+<%--</div>--%>
 
