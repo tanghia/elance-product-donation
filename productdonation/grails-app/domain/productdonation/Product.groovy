@@ -7,7 +7,6 @@ import productdonation.util.DateUtil;
 class Product {
 	transient springSecurityService
 	static belongsTo=[user:User,category:Category] 
-	transient springSecurityService
 	String productName
 	byte[] photo
 	String description
