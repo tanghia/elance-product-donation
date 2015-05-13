@@ -13,6 +13,7 @@
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+		<sec:ifAllGranted roles="ROLE_ADMIN">
 		<div id="create-product" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -34,5 +35,21 @@
 				</fieldset>
 			</g:form>
 		</div>
+		</sec:ifAllGranted>
+		<sec:ifAnyGranted roles="ROLE_USER">
+		<g:form url="[resource:productInstance, action:'createByUser']" >
+			<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isDonation', 'error')} ">
+				<label for="isDonation">
+					<g:message code="product.isDonation.label" default="Is Donation" />
+					
+				</label>
+				<g:checkBox name="isDonation" value="${productInstance?.isDonation}" />
+			</div>
+			
+			<fieldset class="buttons">
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.submit.label', default: 'Submit')}" />
+				</fieldset>
+		</g:form>
+		</sec:ifAnyGranted>
 	</body>
 </html>

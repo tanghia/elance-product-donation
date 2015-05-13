@@ -56,6 +56,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'contactDetail', 'error')} ">
+	<label for="contactDetail">
+		<g:message code="product.contactDetail.label" default="Contact Detail" />
+		
+	</label>
+	<g:textField name="contactDetail" value="${productInstance?.contactDetail}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'createdDate', 'error')} required">
 	<label for="createdDate">
 		<g:message code="product.createdDate.label" default="Created Date" />

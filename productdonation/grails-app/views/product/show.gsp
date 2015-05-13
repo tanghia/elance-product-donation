@@ -76,6 +76,15 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${productInstance?.contactDetail != ""}">
+				<li class="fieldcontain">
+					<span id="contactDetail-label" class="property-label"><g:message code="product.contactDetail.label" default="Contact Detail" /></span>
+					
+						<span class="property-value" aria-labelledby="contactDetail-label"><g:fieldValue bean="${productInstance}" field="contactDetail"/></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${productInstance?.createdDate}">
 				<li class="fieldcontain">
