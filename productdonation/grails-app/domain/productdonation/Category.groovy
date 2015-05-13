@@ -20,4 +20,10 @@ class Category {
 			createdDate=new Date()	
 		}
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 }
