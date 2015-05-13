@@ -23,6 +23,31 @@ class ProductController {
         respond new Product(params)
     }
 
+	def createByUser(Product productInstance)
+	{
+		List<Agreement> agreementList = Agreement.list(params);
+		Product product = new Product(params);
+		println ("productInstance.isDonation: " + productInstance.isDonation)
+		//if product isn't donation
+		if(productInstance.isDonation == false)
+		{
+			product.isDonation = false;
+			product.status = false;
+			product.views = 0;
+			respond product, model:[agreementList: agreementList]
+			return
+		}
+		//if product is donation
+		else
+		{
+			product.isDonation = true;
+			product.status = true;
+			product.views = 0;
+			respond product, model:[agreementList: agreementList]
+			return
+		}
+	}
+	
     @Transactional
     def save(Product productInstance) {
         if (productInstance == null) {
@@ -35,6 +60,11 @@ class ProductController {
             return
         }
 
+		if(productInstance.contactDetail == null)
+		{
+			productInstance.contactDetail = "";
+		}
+		
         productInstance.save flush:true
 
         request.withFormat {
