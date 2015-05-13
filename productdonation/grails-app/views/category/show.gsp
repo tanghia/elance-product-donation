@@ -41,17 +41,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${categoryInstance?.products}">
-				<li class="fieldcontain">
-					<span id="products-label" class="property-label"><g:message code="category.products.label" default="Products" /></span>
-					
-						<g:each in="${categoryInstance.products}" var="p">
-						<span class="property-value" aria-labelledby="products-label"><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${categoryInstance?.status}">
 				<li class="fieldcontain">
 					<span id="status-label" class="property-label"><g:message code="category.status.label" default="Status" /></span>

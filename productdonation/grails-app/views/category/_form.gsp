@@ -20,24 +20,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: categoryInstance, field: 'products', 'error')} ">
-	<label for="products">
-		<g:message code="category.products.label" default="Products" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${categoryInstance?.products?}" var="p">
-    <li><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="product" action="create" params="['category.id': categoryInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'product.label', default: 'Product')])}</g:link>
-</li>
-</ul>
-
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: categoryInstance, field: 'status', 'error')} ">
 	<label for="status">
 		<g:message code="category.status.label" default="Status" />
