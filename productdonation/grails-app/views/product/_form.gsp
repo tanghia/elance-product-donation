@@ -20,6 +20,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required">
+	<label for="photo">
+		<g:message code="product.photo.label" default="Photo" />
+		<span class="required-indicator">*</span>
+	</label>
+	<input type="file" id="photo" name="photo" />
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'description', 'error')} required">
 	<label for="description">
 		<g:message code="product.description.label" default="Description" />
@@ -100,15 +109,6 @@
 <%--	<g:checkBox name="isHot" value="${productInstance?.isHot}" />--%>
 <%----%>
 <%--</div>--%>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required">
-	<label for="photo">
-		<g:message code="product.photo.label" default="Photo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<input type="file" id="photo" name="photo" />
-
-</div>
 
 <div style="visibility: hidden" class="fieldcontain ${hasErrors(bean: productInstance, field: 'user', 'error')} required">
 	<label for="user">

@@ -76,15 +76,6 @@
 </div>
 </g:if>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'createdDate', 'error')} required">
-	<label for="createdDate">
-		<g:message code="product.createdDate.label" default="Created Date" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="createdDate" precision="day"  value="${productInstance?.createdDate}"  />
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required">
 	<label for="activeDate">
 		<g:message code="product.activeDate.label" default="Active Date" />

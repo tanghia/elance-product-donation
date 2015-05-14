@@ -37,8 +37,8 @@
 				<br/>
 					<input name="agreement" type="checkbox" onclick="checkAgreement()"/><span style="font-weight: bold; margin-left: 5px">I agree to the Donation Product Terms of Service and Private Policy</span>
 				</fieldset>
-				<fieldset id="createBtn" class="buttons" style="display: none;">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+				<fieldset id="createBtn" class="buttons">
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" disabled="true"/>
 				</fieldset>
 			</g:form>
 			<script>
@@ -47,11 +47,11 @@
 						var agreement = $("input[name=agreement]").is(":checked");
 						if(agreement)
 						{
-							$("#createBtn").css("display", "block");
+							$("#create").prop('disabled', false);
 						}
 						else
 						{
-							$("#createBtn").css("display", "none");
+							$("#create").prop('disabled', true);
 						}
 					}
 			</script>

@@ -24,12 +24,13 @@ class Product {
 		tag blank:false, nullable:false, inList:["Usuario", "Hoy por ti"]
 		productName blank:false, nullable:false
 		description blank:false, nullable:false
-		contactDetail blank:false, nullable:false
+		contactDetail blank:true, nullable:true
 		summary blank:false, nullable:false
 		status blank:false
 		address nullable:true
-		createdDate blank:true, nullable:false
+		createdDate blank:true, nullable:true
 		activeDate blank:false, nullable:false, min:new Date()
+		photo blank:false,nullable:false, maxSize:1073741824
 	}
 	static mapping = {
 	//	photos cascade: 'all-delete-orphan'
@@ -39,9 +40,7 @@ class Product {
 		isHot defaultValue:false
 	}
 	def beforeInsert(){
-		if(createdDate==DateUtil.NULL_DATE){
-			createdDate=new Date();
-		}
+		createdDate=new Date();
 		if(activeDate==DateUtil.NULL_DATE){
 			activeDate=new Date();
 		}
