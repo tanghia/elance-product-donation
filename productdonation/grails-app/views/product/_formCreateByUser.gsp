@@ -2,7 +2,7 @@
 <%@ page import="productdonation.Agreement" %>
 
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'tag', 'error')} required">
+<div hidden="hidden" class="fieldcontain ${hasErrors(bean: productInstance, field: 'tag', 'error')} required form-group">
 	<label for="tag">
 		<g:message code="product.tag.label" default="Tag" />
 		<span class="required-indicator">*</span>
@@ -11,72 +11,76 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'productName', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'productName', 'error')} required form-group">
 	<label for="productName">
 		<g:message code="product.productName.label" default="Product Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="productName" required="" value="${productInstance?.productName}"/>
+	<g:textField name="productName" required="" value="${productInstance?.productName}" class="form-control"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required form-group">
 	<label for="photo">
 		<g:message code="product.photo.label" default="Photo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<input type="file" id="photo" name="photo" />
+	<input type="file" id="photo" name="photo" class="form-control" />
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'description', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'description', 'error')} required form-group">
 	<label for="description">
 		<g:message code="product.description.label" default="Description" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="description" required="" value="${productInstance?.description}"/>
+	<g:textField name="description" required="" value="${productInstance?.description}" class="form-control"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'summary', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'summary', 'error')} required form-group">
 	<label for="summary">
 		<g:message code="product.summary.label" default="Summary" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="summary" required="" value="${productInstance?.summary}"/>
+	<g:textField name="summary" required="" value="${productInstance?.summary}" class="form-control"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} " style="display: none;">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} " hidden="hidden">
 	<label for="status">
 		<g:message code="product.status.label" default="Status" />
 		
 	</label>
-	<g:checkBox name="status" value="${productInstance?.status}" />
-
+	<g:if test="${productInstance?.isDonation == false}">
+	<g:checkBox name="status" value="false" />
+	</g:if>
+	<g:else>
+	<g:checkBox name="status" value="true"/>
+	</g:else>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'address', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'address', 'error')} form-group">
 	<label for="address">
 		<g:message code="product.address.label" default="Address" />
 		
 	</label>
-	<g:textField name="address" value="${productInstance?.address}"/>
+	<g:textField name="address" value="${productInstance?.address}" class="form-control"/>
 
 </div>
 
 <g:if test="${productInstance?.isDonation == false}">
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'contactDetail', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'contactDetail', 'error')} form-group ">
 	<label for="contactDetail">
 		<g:message code="product.contactDetail.label" default="Contact Detail" />
 		
 	</label>
-	<g:textField name="contactDetail" value="${productInstance?.contactDetail}"/>
+	<g:textArea name="contactDetail" value="${productInstance?.contactDetail}" class="form-control"/>
 
 </div>
 </g:if>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required">
+<div hidden="hidden" class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required form-group">
 	<label for="activeDate">
 		<g:message code="product.activeDate.label" default="Active Date" />
 		<span class="required-indicator">*</span>
@@ -85,16 +89,16 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'category', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'category', 'error')} required form-group">
 	<label for="category">
 		<g:message code="product.category.label" default="Category" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="category" name="category.id" from="${productdonation.Category.list()}" optionKey="id" required="" value="${productInstance?.category?.id}" class="many-to-one"/>
+	<g:select id="category" name="category.id" from="${productdonation.Category.list()}" optionKey="id" required="" value="${productInstance?.category?.id}" class="many-to-one form-control"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isDonation', 'error')}" style="display: none;">
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isDonation', 'error')}" hidden="hidden">
 	<label for="isDonation">
 		<g:message code="product.isDonation.label" default="Is Donation" />
 		
@@ -103,7 +107,7 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} ">
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} ">
 	<label for="isHot">
 		<g:message code="product.isHot.label" default="Is Hot" />
 		
@@ -112,7 +116,7 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'user', 'error')} required" style="display: none;">
+--%><div class="fieldcontain ${hasErrors(bean: productInstance, field: 'user', 'error')} required" style="display: none;" hidden="hidden">
 	<label for="user">
 		<g:message code="product.user.label" default="User" />
 		<span class="required-indicator">*</span>
@@ -121,7 +125,7 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'views', 'error')} required" style="display: none;">
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'views', 'error')} required" style="display: none;">
 	<label for="views">
 		<g:message code="product.views.label" default="Views" />
 		<span class="required-indicator">*</span>
@@ -130,3 +134,4 @@
 
 </div>
 
+--%>

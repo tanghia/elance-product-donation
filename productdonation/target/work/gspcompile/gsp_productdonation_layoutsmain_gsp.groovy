@@ -40,27 +40,45 @@ expressionOut.print(resource(dir: 'js', file: 'jquery-1.11.2.js'))
 printHtmlPart(5)
 expressionOut.print(resource(dir: 'js', file: 'bootstrap.min.js'))
 printHtmlPart(6)
-invokeTag('layoutHead','g',34,[:],-1)
+invokeTag('layoutHead','g',38,[:],-1)
 printHtmlPart(1)
 })
-invokeTag('captureHead','sitemesh',35,[:],1)
+invokeTag('captureHead','sitemesh',39,[:],1)
 printHtmlPart(1)
 createTagBody(1, {->
 printHtmlPart(7)
 expressionOut.print(resource(dir: 'images', file: 'Business-Donations.jpg'))
 printHtmlPart(8)
-invokeTag('layoutBody','g',63,[:],-1)
+createTagBody(2, {->
 printHtmlPart(9)
-})
-invokeTag('captureBody','sitemesh',67,[:],1)
+invokeTag('username','sec',58,[:],-1)
 printHtmlPart(10)
+createClosureForHtmlPart(11, 3)
+invokeTag('link','g',63,['controller':("logout")],3)
+printHtmlPart(12)
+})
+invokeTag('ifLoggedIn','sec',64,[:],2)
+printHtmlPart(13)
+createTagBody(2, {->
+printHtmlPart(14)
+createClosureForHtmlPart(15, 3)
+invokeTag('link','g',69,['controller':("login")],3)
+printHtmlPart(12)
+})
+invokeTag('ifNotLoggedIn','sec',70,[:],2)
+printHtmlPart(16)
+invokeTag('layoutBody','g',76,[:],-1)
+printHtmlPart(17)
+})
+invokeTag('captureBody','sitemesh',99,[:],1)
+printHtmlPart(18)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1430386013601L
+public static final long LAST_MODIFIED = 1431093066889L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -54,8 +54,8 @@ body {
 					<sec:ifLoggedIn>
 						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 								<sec:username /></a></li>
-						<li><a href="#"><span
-								class="glyphicon  glyphicon-calendar"></span> My Room</a></li>
+						<li><g:link controller="product"><span
+								class="glyphicon  glyphicon-calendar"></span>My workspace</g:link></li>
 						<li><g:link controller="logout">
 								<span class="glyphicon  glyphicon-log-out"></span>
 							Logout</g:link></li>

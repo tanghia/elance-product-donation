@@ -39,8 +39,11 @@ class UserController {
 			return
 		}
 
-		userInstance.save flush:true
-
+		def staffRole = Role.findByAuthority('ROLE_USER')
+		if(!UserRole.exists(userInstance.id,staffRole.id)){
+		    UserRole.create(userInstance,staffRole,true)
+		}
+		
 		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [

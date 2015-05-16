@@ -54,8 +54,8 @@ body {
 					<sec:ifLoggedIn>
 						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 								<sec:username /> </a></li>
-						<li><a href="#"><span
-								class="glyphicon  glyphicon-calendar"></span> My Room</a></li>
+						<li><g:link cotroller="product"><span
+								class="glyphicon  glyphicon-calendar"></span>My workspace</g:link></li>
 						<li><g:link controller="logout">
 								<span class="glyphicon  glyphicon-log-out"></span>
 							Logout</g:link></li>
@@ -77,8 +77,10 @@ body {
 			<ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a href="#">Navigation</a></li>
 				<li role="presentation"><g:link controller="user" action="show">Profile</g:link></li>
+				<li role="presentation"><g:link controller="category">Category</g:link></li>
+				<li role="presentation"><g:link controller="category" action="create">Create catogory</g:link></li>
 				<li role="presentation"><g:link controller="product">Products</g:link></li>
-				<li role="presentation"><a href="#">Create a product</a></li>
+				<li role="presentation"><g:link controller="product" action="create">Create a product</g:link></li>
 			</ul>
 		</div>
 		<div class="col-lg-9 col-xd-9 col-sm-9 col-xs-12">
