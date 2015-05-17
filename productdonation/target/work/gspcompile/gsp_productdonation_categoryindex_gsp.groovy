@@ -16,7 +16,7 @@ printHtmlPart(0)
 printHtmlPart(1)
 createTagBody(1, {->
 printHtmlPart(2)
-invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("layout"),'content':("main")],-1)
+invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("layout"),'content':("admin")],-1)
 printHtmlPart(2)
 invokeTag('set','g',7,['var':("entityName"),'value':(message(code: 'category.label', default: 'Category'))],-1)
 printHtmlPart(2)
@@ -33,62 +33,49 @@ invokeTag('captureHead','sitemesh',9,[:],1)
 printHtmlPart(3)
 createTagBody(1, {->
 printHtmlPart(4)
-invokeTag('message','g',11,['code':("default.link.skip.label"),'default':("Skip to content&hellip;")],-1)
-printHtmlPart(5)
-expressionOut.print(createLink(uri: '/'))
-printHtmlPart(6)
-invokeTag('message','g',14,['code':("default.home.label")],-1)
-printHtmlPart(7)
-createTagBody(2, {->
-invokeTag('message','g',15,['code':("default.new.label"),'args':([entityName])],-1)
-})
-invokeTag('link','g',15,['class':("create"),'action':("create")],2)
-printHtmlPart(8)
-invokeTag('message','g',19,['code':("default.list.label"),'args':([entityName])],-1)
-printHtmlPart(9)
 if(true && (flash.message)) {
-printHtmlPart(10)
+printHtmlPart(5)
 expressionOut.print(flash.message)
-printHtmlPart(11)
+printHtmlPart(6)
 }
-printHtmlPart(12)
-invokeTag('sortableColumn','g',27,['property':("name"),'title':(message(code: 'category.name.label', default: 'Name'))],-1)
-printHtmlPart(13)
-invokeTag('sortableColumn','g',29,['property':("createdDate"),'title':(message(code: 'category.createdDate.label', default: 'Created Date'))],-1)
-printHtmlPart(13)
-invokeTag('sortableColumn','g',31,['property':("status"),'title':(message(code: 'category.status.label', default: 'Status'))],-1)
-printHtmlPart(14)
+printHtmlPart(7)
+invokeTag('sortableColumn','g',19,['property':("name"),'title':(message(code: 'category.name.label', default: 'Name'))],-1)
+printHtmlPart(8)
+invokeTag('sortableColumn','g',21,['property':("createdDate"),'title':(message(code: 'category.createdDate.label', default: 'Created Date'))],-1)
+printHtmlPart(8)
+invokeTag('sortableColumn','g',23,['property':("status"),'title':(message(code: 'category.status.label', default: 'Status'))],-1)
+printHtmlPart(9)
 loop:{
 int i = 0
 for( categoryInstance in (categoryInstanceList) ) {
-printHtmlPart(15)
+printHtmlPart(10)
 expressionOut.print((i % 2) == 0 ? 'even' : 'odd')
-printHtmlPart(16)
+printHtmlPart(11)
 createTagBody(3, {->
 expressionOut.print(fieldValue(bean: categoryInstance, field: "name"))
 })
-invokeTag('link','g',39,['action':("show"),'id':(categoryInstance.id)],3)
-printHtmlPart(17)
-invokeTag('formatDate','g',41,['date':(categoryInstance.createdDate)],-1)
-printHtmlPart(17)
-invokeTag('formatBoolean','g',43,['boolean':(categoryInstance.status)],-1)
-printHtmlPart(18)
+invokeTag('link','g',31,['action':("show"),'id':(categoryInstance.id)],3)
+printHtmlPart(12)
+invokeTag('formatDate','g',33,['date':(categoryInstance.createdDate)],-1)
+printHtmlPart(12)
+invokeTag('formatBoolean','g',35,['boolean':(categoryInstance.status)],-1)
+printHtmlPart(13)
 i++
 }
 }
-printHtmlPart(19)
-invokeTag('paginate','g',50,['total':(categoryInstanceCount ?: 0)],-1)
-printHtmlPart(20)
+printHtmlPart(14)
+invokeTag('paginate','g',42,['total':(categoryInstanceCount ?: 0)],-1)
+printHtmlPart(15)
 })
-invokeTag('captureBody','sitemesh',53,[:],1)
-printHtmlPart(21)
+invokeTag('captureBody','sitemesh',45,[:],1)
+printHtmlPart(16)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1430449822689L
+public static final long LAST_MODIFIED = 1431804873759L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

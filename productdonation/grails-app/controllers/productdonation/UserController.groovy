@@ -39,9 +39,9 @@ class UserController {
 			return
 		}
 
-		def staffRole = Role.findByAuthority('ROLE_USER')
-		if(!UserRole.exists(userInstance.id,staffRole.id)){
-		    UserRole.create(userInstance,staffRole,true)
+		def userRole = Role.findByAuthority('ROLE_USER')
+		if(!UserRole.exists(userInstance.id,userRole.id)){
+		    UserRole.create(userInstance,userRole,true)
 		}
 		
 		request.withFormat {

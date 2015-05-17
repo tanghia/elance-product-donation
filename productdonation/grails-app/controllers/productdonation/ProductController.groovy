@@ -7,24 +7,33 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ProductController {
+	def springSecurityService
+	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def index(Integer max) {
+		def userRole = Role.findByAuthority('ROLE_USER')
+		def currentUser=springSecurityService.currentUser
+		def products
+		if(UserRole.exists(currentUser.id,userRole.id)){
+			products=Product.findAllByUser(currentUser,params)
+		}else{
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Product.list(params), model:[productInstanceCount: Product.count()]
-    }
+			products=Product.list(params)
+		}
+		params.max = Math.min(max ?: 10, 100)
 
-    def show(Product productInstance) {
-        respond productInstance
-    }
+		respond products, model:[productInstanceCount: Product.count()]
+	}
 
-    def create() {
-        respond new Product(params)
-    }
+	def show(Product productInstance) {
+		respond productInstance
+	}
 
-	def createByUser(Product productInstance)
-	{
+	def create() {
+		respond new Product(params)
+	}
+
+	def createByUser(Product productInstance) {
 		List<Agreement> agreementList = Agreement.list(params);
 		Product product = new Product(params);
 		println ("productInstance.isDonation: " + productInstance.isDonation)
@@ -47,88 +56,100 @@ class ProductController {
 			return
 		}
 	}
-	
-    @Transactional
-    def save(Product productInstance) {
-        if (productInstance == null) {
-            notFound()
-            return
-        }
 
-        if (productInstance.hasErrors()) {
-            respond productInstance.errors, view:'create'
-            return
-        }
+	@Transactional
+	def save(Product productInstance) {
+		if (productInstance == null) {
+			notFound()
+			return
+		}
+
+		if (productInstance.hasErrors()) {
+			respond productInstance.errors, view:'create'
+			return
+		}
 
 		if(productInstance.contactDetail == null)
 		{
 			productInstance.contactDetail = "";
 		}
-		
-        productInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'product.label', default: 'Product'), productInstance.id])
-                redirect productInstance
-            }
-            '*' { respond productInstance, [status: CREATED] }
-        }
-    }
+		productInstance.save flush:true
 
-    def edit(Product productInstance) {
-        respond productInstance
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [
+					message(code: 'product.label', default: 'Product'),
+					productInstance.id
+				])
+				redirect productInstance
+			}
+			'*' { respond productInstance, [status: CREATED] }
+		}
+	}
 
-    @Transactional
-    def update(Product productInstance) {
-        if (productInstance == null) {
-            notFound()
-            return
-        }
+	def edit(Product productInstance) {
+		respond productInstance
+	}
 
-        if (productInstance.hasErrors()) {
-            respond productInstance.errors, view:'edit'
-            return
-        }
+	@Transactional
+	def update(Product productInstance) {
+		if (productInstance == null) {
+			notFound()
+			return
+		}
 
-        productInstance.save flush:true
+		if (productInstance.hasErrors()) {
+			respond productInstance.errors, view:'edit'
+			return
+		}
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Product.label', default: 'Product'), productInstance.id])
-                redirect productInstance
-            }
-            '*'{ respond productInstance, [status: OK] }
-        }
-    }
+		productInstance.save flush:true
 
-    @Transactional
-    def delete(Product productInstance) {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'Product.label', default: 'Product'),
+					productInstance.id
+				])
+				redirect productInstance
+			}
+			'*'{ respond productInstance, [status: OK] }
+		}
+	}
 
-        if (productInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def delete(Product productInstance) {
 
-        productInstance.delete flush:true
+		if (productInstance == null) {
+			notFound()
+			return
+		}
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Product.label', default: 'Product'), productInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		productInstance.delete flush:true
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'product.label', default: 'Product'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [
+					message(code: 'Product.label', default: 'Product'),
+					productInstance.id
+				])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
+
+	protected void notFound() {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [
+					message(code: 'product.label', default: 'Product'),
+					params.id
+				])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }

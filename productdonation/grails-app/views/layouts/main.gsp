@@ -66,6 +66,7 @@ body {
 						</g:link></li>
 						<li><g:link controller="login">
 								<span class="glyphicon glyphicon-log-in"></span>Login</g:link></li>
+						<li><oauth:connect provider="facebook" id="facebook-connect-link"><span>Facebook</span></oauth:connect></li>		
 					</sec:ifNotLoggedIn>
 
 				</ul>

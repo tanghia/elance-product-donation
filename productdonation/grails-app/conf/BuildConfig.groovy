@@ -71,9 +71,9 @@ grails.project.dependency.resolution = {
 		compile ':spring-security-oauth-linkedin:0.1'
 		compile ':spring-security-oauth-twitter:0.1'
 		compile ':spring-security-oauth-yahoo:0.1'
-		compile ":hibernate:3.6.10.16"
         // plugins needed at runtime but not for compilation
-       /* runtime ":database-migration:1.4.0"*/
+         runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
+        runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
         // Uncomment these to enable additional asset-pipeline capabilities

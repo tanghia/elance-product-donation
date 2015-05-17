@@ -46,4 +46,45 @@ class IndexController {
 		[hotProducts:hotProducts,newProducts:newProducts,userPostedProducts:userPostedProducts, adminPostedProducts:adminPostedProducts]   
 		   
 	}
+	def viewPostedUser(){
+		def userPostedProductCriteria=Product.createCriteria()
+		def userPostedProducts=userPostedProductCriteria.list{
+			and{
+			eq("tag","Usuario")
+			eq("status",true)
+			}
+			order("createdDate","desc")
+		}
+		def adminPostedProductCriteria=Product.createCriteria()
+		def adminPostedProducts=adminPostedProductCriteria.list{
+		   and {
+			eq("tag","Hoy por ti")
+			eq("status",true)
+			}
+			order("createdDate","desc")
+		}
+		def user=User.get(params.uid)
+		[user:user,userPostedProducts:userPostedProducts, adminPostedProducts:adminPostedProducts]
+	}
+	def applyToProduct(){
+		def userPostedProductCriteria=Product.createCriteria()
+		def userPostedProducts=userPostedProductCriteria.list{
+			and{
+			eq("tag","Usuario")
+			eq("status",true)
+			}
+			order("createdDate","desc")
+		}
+		def adminPostedProductCriteria=Product.createCriteria()
+		def adminPostedProducts=adminPostedProductCriteria.list{
+		   and {
+			eq("tag","Hoy por ti")
+			eq("status",true)
+			}
+			order("createdDate","desc")
+		}
+	    def postedUser=User.get(params.uid)
+		def product=Product.get(params.pid)
+		[postedUser:postedUser, product:product,userPostedProducts:userPostedProducts, adminPostedProducts:adminPostedProducts]
+	}
 }

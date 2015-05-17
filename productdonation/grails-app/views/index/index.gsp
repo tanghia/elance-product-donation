@@ -82,7 +82,7 @@
 		</div>
 		<div class="list-group col-lg-3 col-md-3 col-xs-12 col-sm-12">
 			<a href="#" class="list-group-item active"> <span
-				class="list-group-item-heading">Top high score</span>
+				class="list-group-item-heading">New Products</span>
 			</a>
 			<g:each in="${newProducts}" var="product" status="i">
 				<div class="media">
@@ -120,13 +120,16 @@
 									src="data:image/png;base64,${product.photo?.encodeBase64()}"
 									class="img-rounded" alt="${product.productName}">
 								<div class="caption">
-									<h3>
+									<span class="text-info">
 										${product.productName}
-									</h3>
-									<p>...</p>
+									</span>
+									<br/>
+									<span>
+										${product.description}
+									</span>
+									
 									<p>
-										<a href="#" class="btn btn-primary" role="button">Button</a> <a
-											href="#" class="btn btn-default" role="button">Button</a>
+										<g:link action="viewPostedUser" params="[uid:product.user.id]" class="btn btn-primary" role="button">Apply</g:link>
 									</p>
 								</div>
 							</div>
@@ -143,12 +146,15 @@
 									src="data:image/png;base64,${product.photo?.encodeBase64()}"
 									class="img-rounded" alt="${product.productName}">
 								<div class="caption">
-									<h3>
+									<span class="text-info">
 										${product.productName}
-									</h3>
-									<p>...</p>
+									</span>
+									<br/>
+									<span>
+										${product.description}
+									</span>
 									<p>
-										<a href="#" class="btn btn-primary" role="button">Apply</a> 
+										<g:link action="viewPostedUser" params="[uid:product.user.id]" class="btn btn-primary" role="button">Apply</g:link>
 									</p>
 								</div>
 							</div>

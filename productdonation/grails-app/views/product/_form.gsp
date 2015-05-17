@@ -28,7 +28,11 @@
 	class="fieldcontain ${hasErrors(bean: productInstance, field: 'photo', 'error')} required form-group">
 	<label for="photo"> <g:message code="product.photo.label"
 			default="Photo" /> <span class="required-indicator">*</span>
-	</label> <input type="file" id="photo" name="photo" value="${productInstance?.photo}" class="form-control" />
+	</label> 
+	<br/>
+	<img src="data:image/png;base64,${productInstance.photo?.encodeBase64()}"class="img-rounded" alt="${productInstance.productName}" style="height: 50px;width:50px">
+	<input type="file" id="photo" name="photo"
+		value="${productInstance?.photo}" class="form-control" />
 
 </div>
 
@@ -52,15 +56,17 @@
 		value="${productInstance?.summary}" class="form-control" />
 
 </div>
+<sec:ifAnyGranted roles="ROLE_ADMIN">
+	<div
+		class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} form-group">
+		<label for="status"> <g:message code="product.status.label"
+				default="Status" />
 
-<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'status', 'error')} ">--%>
-<%--	<label for="status">--%>
-<%--		<g:message code="product.status.label" default="Status" />--%>
-<%--		--%>
-<%--	</label>--%>
-<%--	<g:checkBox name="status" value="${productInstance?.status}" />--%>
-<%----%>
-<%--</div>--%>
+		</label>
+		<g:checkBox name="status" value="${productInstance?.status}"
+			class="form-control" />
+	</div>
+</sec:ifAnyGranted>
 <%----%>
 <%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'address', 'error')} ">--%>
 <%--	<label for="address">--%>
@@ -79,18 +85,18 @@
 <%--	<g:datePicker name="createdDate" precision="day"  value="${productInstance?.createdDate}"  />--%>
 <%----%>
 <%--</div>--%>
+<sec:ifAnyGranted roles="ROLE_ADMIN">
+	<div
+		class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required form-group">
+		<label for="activeDate"> <g:message
+				code="product.activeDate.label" default="Active Date" /> <span
+			class="required-indicator">*</span>
+		</label>
+		<g:datePicker name="activeDate" precision="day"
+			value="${productInstance?.activeDate}" class="form-control" />
 
-<div
-	class="fieldcontain ${hasErrors(bean: productInstance, field: 'activeDate', 'error')} required form-group">
-	<label for="activeDate"> <g:message
-			code="product.activeDate.label" default="Active Date" /> <span
-		class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="activeDate" precision="day"
-		value="${productInstance?.activeDate}" class="form-control" />
-
-</div>
-
+	</div>
+</sec:ifAnyGranted>
 <div
 	class="fieldcontain ${hasErrors(bean: productInstance, field: 'category', 'error')} required form-group">
 	<label for="category"> <g:message code="product.category.label"
@@ -98,7 +104,8 @@
 	</label>
 	<g:select class="form-control" id="category" name="category.id"
 		from="${productdonation.Category.list()}" optionKey="id" required=""
-		value="${productInstance?.category?.id}" class="many-to-one" />
+		value="${productInstance?.category?.id}"
+		class="many-to-one form-control" />
 
 </div>
 
@@ -127,18 +134,18 @@
 	</label>
 	<g:select id="user" name="user.id"
 		from="${productdonation.User.list()}" optionKey="id" required=""
-		value="${productInstance?.user?.id}" class="many-to-one" />
+		value="${productInstance?.user?.id}" class="many-to-one form-control" />
 
 </div>
-
-<div
-	class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} form-group">
-	<label for="isHot"> <g:message code="product.isHot.label"
-			default="Is Hot" />
-	</label>
-	<g:checkBox name="isHot" value="${productInstance?.isHot}"/>
-</div>
-
+<sec:ifAnyGranted roles="ROLE_ADMIN">
+	<div
+		class="fieldcontain ${hasErrors(bean: productInstance, field: 'isHot', 'error')} form-group">
+		<label for="isHot"> <g:message code="product.isHot.label"
+				default="Is Hot" />
+		</label>
+		<g:checkBox name="isHot" value="${productInstance?.isHot}" />
+	</div>
+</sec:ifAnyGranted>
 <%----%>
 <%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'views', 'error')} required">--%>
 <%--	<label for="views">--%>

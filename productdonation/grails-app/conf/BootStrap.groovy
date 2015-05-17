@@ -41,6 +41,7 @@ class BootStrap {
 				'/login',
 				'/login.*',
 				'/login/*',
+				"/**/oauth/**",
 				'/logout',
 				'/logout.*',
 				'/logout/*'

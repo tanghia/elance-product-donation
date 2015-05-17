@@ -39,7 +39,7 @@
 			</div>
 			
 			<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.submit.label', default: 'Submit')}" />
+					<g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.submit.label', default: 'Submit')}" />
 				</fieldset>
 		</g:form>
 		</sec:ifAnyGranted>

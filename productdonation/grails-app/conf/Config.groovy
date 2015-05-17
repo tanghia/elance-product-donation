@@ -148,16 +148,16 @@ def appName = grails.util.Metadata.current.'app.name'
 def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}/${appName}"
 oauth {
 	debug = true
-	/*providers {
+	providers {
 		facebook {
 			api = org.scribe.builder.api.FacebookApi
-			key = 'oauth_facebook_key'
-			secret = 'oauth_facebook_secret'
+			key = '1026804377337379'
+			secret = '6e041d24768d8a4f4129dac1ed892a4b'
 			successUri = '/oauth/facebook/success'
 			failureUri = '/oauth/facebook/failure'
 			callback = "${baseURL}/oauth/facebook/callback"
 		}
-		twitter {
+		/*twitter {
 			api = org.scribe.builder.api.TwitterApi
 			key = 'oauth_twitter_key'
 			secret = 'oauth_twitter_secret'
@@ -194,6 +194,6 @@ oauth {
 			failureUri = '/oauth/google/failure'
 			callback = "${baseURL}/oauth/google/callback"
 			scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-		}
-	}*/
+		}*/
+	}
 }
