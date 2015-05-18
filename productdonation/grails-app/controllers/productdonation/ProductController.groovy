@@ -26,6 +26,7 @@ class ProductController {
 	}
 
 	def show(Product productInstance) {
+		session["productPhoto"]=productInstance.photo
 		respond productInstance
 	}
 
@@ -73,7 +74,9 @@ class ProductController {
 		{
 			productInstance.contactDetail = "";
 		}
-
+		if(productInstance.photo.length==0){
+			productInstance.photo=session["productPhoto"]
+		}
 		productInstance.save flush:true
 
 		request.withFormat {

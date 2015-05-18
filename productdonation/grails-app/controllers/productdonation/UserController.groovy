@@ -16,6 +16,7 @@ class UserController {
 	}
 
 	def show(User userInstance) {
+		session["avatar"]=userInstance.avatar
 		if(springSecurityService.currentUser!=null){
 			respond springSecurityService.currentUser
 		}else{
@@ -38,12 +39,13 @@ class UserController {
 			respond userInstance.errors, view:'create'
 			return
 		}
-
-		def userRole = Role.findByAuthority('ROLE_USER')
-		if(!UserRole.exists(userInstance.id,userRole.id)){
-		    UserRole.create(userInstance,userRole,true)
-		}
 		
+		userInstance.save flush:false
+		def userRole = Role.findByAuthority('ROLE_USER')
+
+		UserRole.create(userInstance,userRole,true)
+
+
 		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [
@@ -71,7 +73,9 @@ class UserController {
 			respond userInstance.errors, view:'edit'
 			return
 		}
-
+		if(userInstance.avatar.length==0){
+			userInstance.avatar=session["avatar"]
+		}
 		userInstance.save flush:true
 
 		request.withFormat {
