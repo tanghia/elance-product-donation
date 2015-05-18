@@ -148,7 +148,7 @@
 				</g:if>
 			
 			</ol>
-			<g:form url="[resource:productInstance, action:'delete']" method="DELETE">
+			<g:form url="[resource:productInstance, action:'delete']" method="POST">
 				<fieldset class="buttons">
 					<g:link class="edit btn btn-success" action="edit" resource="${productInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete btn btn-success" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
