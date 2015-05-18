@@ -49,6 +49,7 @@ class BootStrap {
 				new RequestMap(url: url, configAttribute: 'permitAll').save()
 			}
 			 new RequestMap(url: '/**/user/**', configAttribute: 'ROLE_ADMIN').save()
+			 new RequestMap(url: '/**/user/index', configAttribute: 'ROLE_ADMIN').save()
 			 new RequestMap(url: '/**/user/create', configAttribute: 'permitAll').save()
 			 new RequestMap(url: '/**/user/save', configAttribute: 'permitAll').save()
 			 new RequestMap(url: '/**/user/edit/**', configAttribute: 'ROLE_ADMIN,ROLE_USER').save()

@@ -151,11 +151,11 @@ oauth {
 	providers {
 		facebook {
 			api = org.scribe.builder.api.FacebookApi
-			key = '1026804377337379'
-			secret = '6e041d24768d8a4f4129dac1ed892a4b'
+			key = '539030129569728'
+			secret = '4ad9f5fa60c2788b40796be7b1d0b47b'
 			successUri = '/oauth/facebook/success'
 			failureUri = '/oauth/facebook/failure'
-			callback = "${baseURL}/oauth/facebook/callback"
+			callback = "${baseURL}/oauthFacebook/facebookCallback"
 		}
 		/*twitter {
 			api = org.scribe.builder.api.TwitterApi

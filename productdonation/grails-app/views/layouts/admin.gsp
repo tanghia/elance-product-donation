@@ -78,6 +78,7 @@ body {
 				<li role="presentation" class="active"><a href="#">Navigation</a></li>
 				<li role="presentation"><g:link controller="user" action="show">Profile</g:link></li>
 				<sec:ifAnyGranted roles="ROLE_ADMIN">
+				<li role="presentation"><g:link controller="user">Manage User</g:link></li>
 					<li role="presentation"><g:link controller="category">Category</g:link></li>
 					<li role="presentation"><g:link controller="category"
 							action="create">Create catogory</g:link></li>

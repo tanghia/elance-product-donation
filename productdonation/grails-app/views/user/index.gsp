@@ -8,19 +8,15 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+		
+		
+		<g:link class="create btn btn-success" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+		
 		<div id="list-user" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table">
 			<thead>
 					<tr>
 					
@@ -30,7 +26,7 @@
 					
 						<g:sortableColumn property="username" title="${message(code: 'user.username.label', default: 'Username')}" />
 					
-						<g:sortableColumn property="password" title="${message(code: 'user.password.label', default: 'Password')}" />
+						<g:sortableColumn property="password" title="${message(code: 'user.avatar.label', default: 'Avatar')}" />
 					
 						<g:sortableColumn property="phoneNumber" title="${message(code: 'user.phoneNumber.label', default: 'Phone Number')}" />
 					
@@ -48,7 +44,9 @@
 					
 						<td>${fieldValue(bean: userInstance, field: "username")}</td>
 					
-						<td>${fieldValue(bean: userInstance, field: "password")}</td>
+						<td><img
+									src="data:image/png;base64,${userInstance.avatar?.encodeBase64()}"
+									class="img-rounded" alt="${userInstance.username}" width="64" height="64"></td>
 					
 						<td>${fieldValue(bean: userInstance, field: "phoneNumber")}</td>
 					

@@ -23,7 +23,7 @@ class IndexController {
 				
 				eq("status",true)
 				order("createdDate","desc")
-				maxResults(5)
+				maxResults(4)
 			}
 		   def userPostedProductCriteria=Product.createCriteria()
 		   def userPostedProducts=userPostedProductCriteria.list{

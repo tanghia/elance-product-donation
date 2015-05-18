@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
 	def springSecurityService
-	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
@@ -16,7 +16,7 @@ class UserController {
 	}
 
 	def show(User userInstance) {
-		session["avatar"]=userInstance.avatar
+		session["avatar"]=userInstance?.avatar
 		if(springSecurityService.currentUser!=null){
 			respond springSecurityService.currentUser
 		}else{
@@ -73,7 +73,7 @@ class UserController {
 			respond userInstance.errors, view:'edit'
 			return
 		}
-		if(userInstance.avatar.length==0){
+		if(userInstance?.avatar?.length==0){
 			userInstance.avatar=session["avatar"]
 		}
 		userInstance.save flush:true
