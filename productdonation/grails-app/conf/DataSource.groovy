@@ -8,7 +8,7 @@ hibernate {
 	cache.use_second_level_cache = true
 	cache.use_query_cache = false
 	//cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory' // Hibernate 3
-	//cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
+	cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
 	singleSession = true // configure OSIV singleSession mode
 }
 
@@ -16,7 +16,7 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+			dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/productdonation?useUnicode=yes&characterEncoding=UTF-8"
             username = "root"
             password = "123456"
@@ -37,7 +37,7 @@ environments {
 			password="aPZlDuqj8p"
 			pooled = true
 			properties {
-			    sjmxEnabled = true
+			    jmxEnabled = true
                initialSize = 5
                maxActive = 50
                minIdle = 5
