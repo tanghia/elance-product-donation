@@ -82,6 +82,10 @@ body {
 					<li role="presentation"><g:link controller="category">Category</g:link></li>
 					<li role="presentation"><g:link controller="category"
 							action="create">Create catogory</g:link></li>
+					<li role="presentation"><g:link controller="question"
+							action="index">Manage Question</g:link></li>
+					<li role="presentation"><g:link controller="answer"
+							action="index">Manage Answer</g:link></li>
 				</sec:ifAnyGranted>
 				<li role="presentation"><g:link controller="product">Products</g:link></li>
 				<li role="presentation"><g:link controller="product"

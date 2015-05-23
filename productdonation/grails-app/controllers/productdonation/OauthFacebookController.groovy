@@ -9,7 +9,7 @@ class OauthFacebookController {
     def facebookCallback() {
 		Token token = (Token) session[oauthService.findSessionKeyForAccessToken('facebook')]
 		def apiUrl = grailsApplication.config.grails.facebook.api.url
-		def result = oauthService.getFacebookResource(facebookAccessToken, apiUrl)?.getBody()
+		def result = oauthService.getFacebookResource(token, apiUrl)?.getBody()
 		def facebookResponse = JSON.parse(result)
 		String email=facebookResponse("email")
 		String userName = facebookResponse['username']

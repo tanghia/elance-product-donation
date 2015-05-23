@@ -1,9 +1,13 @@
 package uk.co.desirableobjects.oauth.scribe
 
+import org.scribe.exceptions.OAuthException;
 import org.scribe.model.Token
 import org.scribe.model.Verifier
+
 import uk.co.desirableobjects.oauth.scribe.holder.RedirectHolder
+
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
+
 import uk.co.desirableobjects.oauth.scribe.exception.MissingRequestTokenException
 
 class OauthController {
@@ -35,9 +39,13 @@ class OauthController {
         Token accessToken
 
         try {
+			println providerName+":"+requestToken+":"+verifier
             accessToken = oauthService.getAccessToken(providerName, requestToken, verifier)
-        } catch(OAuthException){
-            log.error("Cannot authenticate with oauth")
+        
+			} catch(OAuthException a){
+              a.printStackTrace()
+			log.error("Cannot authenticate with oauth")
+			
             return redirect(uri: provider.failureUri)
         }
         

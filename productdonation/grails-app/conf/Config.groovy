@@ -126,7 +126,7 @@ grails.plugin.springsecurity.securityConfigType = 'Requestmap'
 
 grails.plugin.springsecurity.oauth.active = true
 grails.plugin.springsecurity.oauth.domainClass = 'productdonation.OAuthId'
-grails.plugin.springsecurity.oauth.userLookup.oAuthIdsPropertyName = 'oAuthIDs'
+grails.plugin.springsecurity.oauth.userLookup.oAuthIdsPropertyName = 'oAuthIds'
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/oauth/askToLinkOrCreateAccount'
 grails.plugin.springsecurity.oauth.registration.roleNames = ['ROLE_USER']
 
@@ -145,7 +145,7 @@ grails.plugin.springsecurity.oauth.registration.roleNames = ['ROLE_USER']
 //]
 
 def appName = grails.util.Metadata.current.'app.name'
-def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}/${appName}"
+def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}/"
 oauth {
 	debug = true
 	providers {
@@ -155,7 +155,8 @@ oauth {
 			secret = '4ad9f5fa60c2788b40796be7b1d0b47b'
 			successUri = '/oauth/facebook/success'
 			failureUri = '/oauth/facebook/failure'
-			callback = "${baseURL}/oauthFacebook/facebookCallback"
+			callback="${baseURL}/oauth/facebook/callback"
+						//callback = "${baseURL}/oauthFacebook/facebookCallback"
 		}
 		/*twitter {
 			api = org.scribe.builder.api.TwitterApi

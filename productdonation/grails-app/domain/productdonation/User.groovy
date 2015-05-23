@@ -8,6 +8,7 @@ import sun.management.jmxremote.ConnectorBootstrap.DefaultValues;
 class User {
 
 	transient springSecurityService
+	static hasMany = [oAuthIDs: OAuthId]
 	String name
 	String lastName
 	byte[] avatar

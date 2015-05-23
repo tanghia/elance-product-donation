@@ -66,6 +66,7 @@ grails.project.dependency.resolution = {
 		compile ':spring-security-oauth:2.1.0-SNAPSHOT'
 
 		// and also you need add at least one of extensions:
+		
 		compile ':spring-security-oauth-facebook:0.1'
 		compile ':spring-security-oauth-google:0.1'
 		compile ':spring-security-oauth-linkedin:0.1'

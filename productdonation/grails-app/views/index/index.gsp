@@ -154,7 +154,7 @@
 										${product.description}
 									</span>
 									<p>
-										<g:link action="viewPostedUser" params="[uid:product.user.id]" class="btn btn-primary" role="button">Apply</g:link>
+										<g:link action="viewPostedUser" params="[uid:product.user.id,pid:product.id]" class="btn btn-primary" role="button">Apply</g:link>
 									</p>
 								</div>
 							</div>

@@ -64,7 +64,8 @@ class IndexController {
 			order("createdDate","desc")
 		}
 		def user=User.get(params.uid)
-		[user:user,userPostedProducts:userPostedProducts, adminPostedProducts:adminPostedProducts]
+		def product=Product.get(params.pid)
+		[product:product,user:user,userPostedProducts:userPostedProducts, adminPostedProducts:adminPostedProducts]
 	}
 	def applyToProduct(){
 		def userPostedProductCriteria=Product.createCriteria()
