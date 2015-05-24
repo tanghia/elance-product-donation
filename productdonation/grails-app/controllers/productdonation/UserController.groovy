@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
 	def springSecurityService
+	def mailService
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def index(Integer max) {
@@ -39,7 +40,7 @@ class UserController {
 			respond userInstance.errors, view:'create'
 			return
 		}
-		
+
 		userInstance.save flush:false
 		def userRole = Role.findByAuthority('ROLE_USER')
 
@@ -123,5 +124,23 @@ class UserController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+	}
+	def sendEmail(){
+		List<User> users=User.findAllByIsNewEmailReciever(true)
+		List<String> emails=[]
+		users.each{
+			emails.add(it.username)
+		}
+		try{
+			mailService.sendMail{
+
+				to emails.toArray()
+				subject "No Reply"
+				body params.content
+			}
+		}catch(Exception e){
+			e.printStackTrace()
+		}
+		redirect controller:"user", action:"index"
 	}
 }

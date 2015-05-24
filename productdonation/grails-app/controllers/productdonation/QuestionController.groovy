@@ -30,7 +30,7 @@ class QuestionController {
 
     @Transactional
     def save(Question questionInstance) {
-        if (questionInstance == null) {
+     /*   if (questionInstance == null) {
             notFound()
             return
         }
@@ -38,13 +38,17 @@ class QuestionController {
         if (questionInstance.hasErrors()) {
             respond questionInstance.errors, view:'create'
             return
-        }
-
-        questionInstance.save flush:true
+        }*/
+		questionInstance.save flush:false
+		for(int i=0;i<params.int("numberofanswer");i++){
+			println params["answer"+i]
+			println params["score"+i]
+			new Answer(answer:params["answer"+i],score:params.int("score"+i),question:questionInstance).save(flush:true)
+		}
 
 		
         request.withFormat {
-            form multipartForm {
+             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])
                 redirect questionInstance
             }

@@ -47,5 +47,5 @@
 
 </div>
 </g:each>
-<input hidden="hidden" />
+<input hidden="hidden" name="numberofanswer" value="${numberAnswer}" />
 

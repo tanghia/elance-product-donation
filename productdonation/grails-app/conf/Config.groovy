@@ -59,7 +59,18 @@ grails {
     }
 }
 
-
+grails {
+	mail {
+	  host = "smtp.gmail.com"
+	  port = 465
+	  username = "pagetestweb@gmail.com"
+	  password = "elanceuser"
+	  props = ["mail.smtp.auth":"true",
+			   "mail.smtp.socketFactory.port":"465",
+			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+			   "mail.smtp.socketFactory.fallback":"false"]
+	}
+ }
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'

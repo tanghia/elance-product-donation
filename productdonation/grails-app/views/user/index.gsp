@@ -11,7 +11,7 @@
 		
 		
 		<g:link class="create btn btn-success" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
-		
+		<a class="create btn btn-success" onclick="sendEmail()">Send Email</a>
 		<div id="list-user" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -60,5 +60,45 @@
 				<g:paginate total="${userInstanceCount ?: 0}" />
 			</div>
 		</div>
+		
+	<script type="text/javascript">
+	function sendEmail() {
+		$("#emailModal").modal('show')
+	}
+
+	</script>	
+		
+		<div class="modal fade bs-example-modal-sm" id="emailModal"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog  modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+					<g:form controller="user" action="sendEmail">
+						<div class="form-group">
+							<label>Email:</label> <span id="emailAddress"> To Receivers</span>
+						</div>
+						<div class="form-group">
+							<label>Content:</label>
+							<g:textArea name="content" class="form-control" />
+						</div>
+						<g:submitButton value="submit" name="submit"
+							class="btn btn-primary" />
+					</g:form>
+				</div>
+				<%--<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			--%>
+			</div>
+		</div>
+	</div>
 	</body>
 </html>

@@ -64,7 +64,7 @@ grails.project.dependency.resolution = {
 		compile ":mysql-connectorj:5.1.22.1"
 		//...
 		compile ':spring-security-oauth:2.1.0-SNAPSHOT'
-
+		
 		// and also you need add at least one of extensions:
 		
 		compile ':spring-security-oauth-facebook:0.1'
@@ -72,6 +72,7 @@ grails.project.dependency.resolution = {
 		compile ':spring-security-oauth-linkedin:0.1'
 		compile ':spring-security-oauth-twitter:0.1'
 		compile ':spring-security-oauth-yahoo:0.1'
+		compile ":mail:1.0.7"
         // plugins needed at runtime but not for compilation
          runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
         runtime ":database-migration:1.4.0"
